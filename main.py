@@ -5,12 +5,14 @@ image = cv.imread('photos/Gray-wolf.jpg', 0)
 image1 = cv.imread('photos/Gray-wolf1.jpg', 0)
 image2 = cv.imread('photos/img1.jpg', 0)
 image3 = cv.imread('photos/img3.jpg', 0)
+image4 = cv.imread('photos/wolf.jpg', 0)
 
 #make all imgs at same size
 image = cv.resize(image , (480 ,270))
 image1 = cv.resize(image1 , (480 ,270))
 image2 = cv.resize(image2 , (480 ,270))
 image3 = cv.resize(image3 , (480 ,270))
+image4 = cv.resize(image4 , (480 ,270))
 
 ########################################## Task 1 ################################
 
@@ -119,6 +121,8 @@ def to_zeros(img, threshold):
 
 # to_zeros(image1 , 20)
 
+########################################### Task 4 #############################
+
 def sharpen(img , amount):
     a = np.array([[0, 0 , 0],
                 [0, 1 ,0],
@@ -135,9 +139,15 @@ def sharpen(img , amount):
     cv.waitKey(0)
     cv.destroyAllWindows
 
+# sharpen(image1, 1)
 
-sharpen(image1, 0)
-sharpen(image1, 1)
-sharpen(image1, 5)
-sharpen(image1, 20)
+########################################### Task 5 #############################
 
+def canny_edge(img):
+
+    canny_img = cv.Canny(img,110,180)
+    cv.imshow('canny-edged' , canny_img)
+    cv.waitKey(0)
+    cv.destroyAllWindows
+
+canny_edge(image4)
