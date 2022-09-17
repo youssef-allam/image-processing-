@@ -12,7 +12,7 @@ image1 = cv.resize(image1 , (480 ,270))
 image2 = cv.resize(image2 , (480 ,270))
 image3 = cv.resize(image3 , (480 ,270))
 
-########################################## Task 1 ########################################
+########################################## Task 1 ################################
 
 def display4imges(img1,img2, img3 , img4):
    
@@ -28,7 +28,7 @@ def display4imges(img1,img2, img3 , img4):
 # display4imges(image, image1,image2 , image3)
 
 
-########################################### Task 2 ######################################
+########################################### Task 2 ###############################
 
 def BFmather_ORB(img1,img2):
     # Initiate ORB detector
@@ -43,12 +43,12 @@ def BFmather_ORB(img1,img2):
     # Sort them in the order of their distance.
     matches = sorted(matches, key = lambda x:x.distance)
     # Draw first 10 matches.
-    img3 = cv.drawMatches(img1,kp1,img2,kp2,matches[:45],None,flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+    img3 = cv.drawMatches(img1,kp1,img2,kp2,matches[:200],None,flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
     cv.imshow('BFmather_ORB', img3)
     cv.waitKey(0)
     cv.destroyAllWindows
 
-BFmather_ORB(image1, image1)
+# BFmather_ORB(image1, image1)
 
 def BFmather_SIFT(img1 , img2):
     # Initiate SIFT detector
@@ -59,18 +59,18 @@ def BFmather_SIFT(img1 , img2):
     # BFMatcher with default params
     bf = cv.BFMatcher()
     matches = bf.knnMatch(des1,des2,k=2)
-    # Apply ratio test
-    # good = []
-    # for m,n in matches:
-    #     if m.distance < 0.75*n.distance:
-    #         good.append([m])
+    #Apply ratio test
+    good = []
+    for m,n in matches:
+        if m.distance < 0.75*n.distance:
+            good.append([m])
     # cv.drawMatchesKnn expects list of lists as matches.
     img3 = cv.drawMatchesKnn(img1,kp1,img2,kp2,matches[:45],None,flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
     cv.imshow('BFmatcher_SIFT' , img3)
     cv.waitKey(0)
     cv.destroyAllWindows
 
-BFmather_SIFT(image1 , image1)
+# BFmather_SIFT(image1 , image1)
 
 def F_BMatcher(img1 , img2):
     # Initiate SIFT detector
@@ -103,5 +103,22 @@ def F_BMatcher(img1 , img2):
     cv.waitKey(0)
     cv.destroyAllWindows
 
-F_BMatcher(image1 , image1)
+# F_BMatcher(image1 , image1)
+
+########################################### Task 3 #############################
+
+def to_zeros(img, threshold):
+    # THRESH_TOZEROS using Numpy
+    imgx = img.astype(int) 
+    imgx[imgx < threshold] = 0 
+    img = imgx.astype('uint8')
+    #show the image 
+    cv.imshow('TO_ZEROS' , img)
+    cv.waitKey(0)
+    cv.destroyAllWindows
+
+# to_zeros(image1 , 20)
+
+
+
 
