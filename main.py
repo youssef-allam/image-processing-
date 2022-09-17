@@ -119,6 +119,25 @@ def to_zeros(img, threshold):
 
 # to_zeros(image1 , 20)
 
+def sharpen(img , amount):
+    a = np.array([[0, 0 , 0],
+                [0, 1 ,0],
+                [0, 0 , 0]])
+
+    b = np.array([[0, -1 , 0],
+                [-1, 5 ,-1],
+                [0, -1 , 0]])
+    
+    kernel = a + b*amount
+
+    filterd_img = cv.filter2D(img, -1 ,kernel)
+    cv.imshow('sharpen' , filterd_img)
+    cv.waitKey(0)
+    cv.destroyAllWindows
 
 
+sharpen(image1, 0)
+sharpen(image1, 1)
+sharpen(image1, 5)
+sharpen(image1, 20)
 
