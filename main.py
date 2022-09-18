@@ -121,7 +121,7 @@ def to_zeros(img, threshold):
 
 # to_zeros(image1 , 20)
 
-########################################### Task 4 #############################
+########################################### Task 5 #############################
 
 def sharpen(img , amount):
     a = np.array([[0, 0 , 0],
@@ -132,7 +132,7 @@ def sharpen(img , amount):
                 [-1, 5 ,-1],
                 [0, -1 , 0]])
     
-    kernel = a + b*amount
+    kernel = a + b*amount #calculating the kernel
 
     filterd_img = cv.filter2D(img, -1 ,kernel)
     cv.imshow('sharpen' , filterd_img)
@@ -141,13 +141,36 @@ def sharpen(img , amount):
 
 # sharpen(image1, 1)
 
-########################################### Task 5 #############################
+########################################### Task 6 #############################
+
 
 def canny_edge(img):
-
-    canny_img = cv.Canny(img,110,180)
+    img =cv.GaussianBlur(img,(5,5),0) # bluring the image 
+    canny_img = cv.Canny(img,78,69) #edge detection
     cv.imshow('canny-edged' , canny_img)
     cv.waitKey(0)
     cv.destroyAllWindows
 
 canny_edge(image4)
+
+################### the code to get best values for canny thresholds ###############
+
+# def catch(Lower=0):
+#     Lower = cv.getTrackbarPos('Lower', 'canny')
+#     Upper = cv.getTrackbarPos('Upper', 'canny')
+#     edge = cv.Canny(image, Lower, Upper)
+#     cv.imshow('canny', edge)
+
+# while True:
+#     image=image4.copy()
+#     image=cv.GaussianBlur(image,(5,5),0)
+#     cv.namedWindow('canny')
+#     Lower=1
+#     Upper=1
+#     cv.createTrackbar('Lower','canny',Lower,255,catch)
+#     cv.createTrackbar('Upper','canny',Upper,255,catch)
+#     cv.imshow('Frame',image4)
+#     k = cv.waitKey(0)
+#     if k : 
+#         break
+# cv.destroyAllWindows()
