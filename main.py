@@ -1,18 +1,21 @@
 import cv2 as cv
 import numpy as np
-
+#get all needed images
 image = cv.imread('photos/Gray-wolf.jpg', 0)
 image1 = cv.imread('photos/Gray-wolf1.jpg', 0)
 image2 = cv.imread('photos/img1.jpg', 0)
 image3 = cv.imread('photos/img3.jpg', 0)
 image4 = cv.imread('photos/wolf.jpg', 0)
 
-#make all imgs at same size
+#making all imgs at same size
 image = cv.resize(image , (480 ,270))
 image1 = cv.resize(image1 , (480 ,270))
 image2 = cv.resize(image2 , (480 ,270))
 image3 = cv.resize(image3 , (480 ,270))
 image4 = cv.resize(image4 , (480 ,270))
+
+#rotaing and image for feature matching 
+image1_R = cv.rotate(image1 , cv.ROTATE_180)
 
 ########################################## Task 1 ################################
 
@@ -32,7 +35,7 @@ def display4imges(img1,img2, img3 , img4):
 
 ########################################### Task 2 ###############################
 
-def BFmather_ORB(img1,img2):
+def BFmatcher_ORB(img1,img2):
     # Initiate ORB detector
     orb = cv.ORB_create()
     # find the keypoints and descriptors with ORB
@@ -45,34 +48,36 @@ def BFmather_ORB(img1,img2):
     # Sort them in the order of their distance.
     matches = sorted(matches, key = lambda x:x.distance)
     # Draw first 10 matches.
-    img3 = cv.drawMatches(img1,kp1,img2,kp2,matches[:200],None,flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+    img3 = cv.drawMatches(img1,kp1,img2,kp2,matches[:4000],None,flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
     cv.imshow('BFmather_ORB', img3)
     cv.waitKey(0)
     cv.destroyAllWindows
 
-# BFmather_ORB(image1, image1)
+# BFmatcher_ORB(image1, image1_R)
 
-def BFmather_SIFT(img1 , img2):
+def BFmatcher_SIFT(img1 , img2):
     # Initiate SIFT detector
     sift = cv.SIFT_create()
     # find the keypoints and descriptors with SIFT
     kp1, des1 = sift.detectAndCompute(img1,None)
     kp2, des2 = sift.detectAndCompute(img2,None)
     # BFMatcher with default params
-    bf = cv.BFMatcher()
+    bf = cv.BFMatcher(cv.NORM_L2 )
     matches = bf.knnMatch(des1,des2,k=2)
-    #Apply ratio test
+    # Apply ratio test
     good = []
     for m,n in matches:
         if m.distance < 0.75*n.distance:
             good.append([m])
+
     # cv.drawMatchesKnn expects list of lists as matches.
-    img3 = cv.drawMatchesKnn(img1,kp1,img2,kp2,matches[:45],None,flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+    img3 = cv.drawMatchesKnn(img1,kp1,img2,kp2,good,None,flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
     cv.imshow('BFmatcher_SIFT' , img3)
     cv.waitKey(0)
     cv.destroyAllWindows
 
-# BFmather_SIFT(image1 , image1)
+
+# BFmatcher_SIFT(image1 , image1_R)
 
 def F_BMatcher(img1 , img2):
     # Initiate SIFT detector
@@ -105,7 +110,7 @@ def F_BMatcher(img1 , img2):
     cv.waitKey(0)
     cv.destroyAllWindows
 
-# F_BMatcher(image1 , image1)
+# F_BMatcher(image1 , image1_R)
 
 ########################################### Task 3 #############################
 
@@ -151,7 +156,7 @@ def canny_edge(img):
     cv.waitKey(0)
     cv.destroyAllWindows
 
-canny_edge(image4)
+# canny_edge(image4)
 
 ################### the code to get best values for canny thresholds ###############
 
