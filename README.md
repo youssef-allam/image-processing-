@@ -3,19 +3,13 @@
 <h3> Task 2 </h3>
 
 <h4> 1. Which algorithm gets better results?</h4>
-acorrding to my tries, ( Brute-Force Matching with ORB Descriptors ) and (FLANN based Matcher with SIFT Descriptors) were way better in detecting matches than (Brute-Force Matching with SIFT Descriptors) <br/>
+acorrding to my tries, ( Brute-Force Matching with ORB Descriptors ) gets lower number of matches even if i set the matches array to get high values, (FLANN based Matcher with SIFT Descriptors) and (Brute-Force Matching with SIFT Descriptors) got similar results, but FLANN based Matcher was slightly Faster (as its small amount of data).<br/>
 <br/>
 
+   <img src = "https://user-images.githubusercontent.com/66872519/190903375-ffad6486-864c-4ea1-885e-57fa8f1b2a1b.png" />
+  <br/>
+  <br/>
 
- BF_matcher_ORB
-   <img src="https://user-images.githubusercontent.com/66872519/190897974-80a93259-efd0-4a3f-b6e6-d762098a8ca4.png" />
-  <br/>
-  <br/>
-  
-  BF_matcher_SIFT
-  <img src="https://user-images.githubusercontent.com/66872519/190900950-8c7a85b9-f742-42c1-8322-e3172d9d0383.png" />
- <br/>
-  <br/>
 <h4> 2.	time taken by the algorithms </h4>
 in small data like two images it is not noticeable but in large data ( FLANN based Matcher ) will be faster than  ( Brute-Force Matching ), as BFMatcher is going to try all the possibilities which will get better results but slower than FLANN based Matcher.
 
@@ -23,6 +17,8 @@ in small data like two images it is not noticeable but in large data ( FLANN bas
   <br/>
   
   <h4> 3. changing distance function and number of Ks effect </h4>
+  changing distance function between NORM_L1 , NORM_L2  did not perform big changes ,but The NORM L1 is in general faster. <br/>
+  changing number of Ks changed the count of best matches found, So lowering it gets better results.
 
 
 <h3>Task 4</h3>
