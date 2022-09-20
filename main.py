@@ -49,7 +49,7 @@ def BFmatcher_ORB(img1,img2):
     matches = sorted(matches, key = lambda x:x.distance)
     # Draw first 10 matches.
     img3 = cv.drawMatches(img1,kp1,img2,kp2,matches[:4000],None,flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
-    cv.imshow('BFmather_ORB', img3)
+    cv.imshow('BFmatcher_ORB', img3)
     cv.waitKey(0)
     cv.destroyAllWindows
 
@@ -106,7 +106,7 @@ def F_BMatcher(img1 , img2):
                    matchesMask = matchesMask,
                    flags = cv.DrawMatchesFlags_DEFAULT)
     img3 = cv.drawMatchesKnn(img1,kp1,img2,kp2,matches,None,**draw_params)
-    cv.imshow('FlaNN_macther' , img3)
+    cv.imshow('FlaNN_matcher' , img3)
     cv.waitKey(0)
     cv.destroyAllWindows
 
