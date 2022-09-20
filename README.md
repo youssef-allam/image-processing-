@@ -3,7 +3,7 @@
 <h3> Task 2 </h3>
 
 <h4> 1. Which algorithm gets better results?</h4>
-acorrding to my tries, ( Brute-Force Matching with ORB Descriptors ) gets lower number of matches even if i set the matches array to get high values, (FLANN based Matcher with SIFT Descriptors) and (Brute-Force Matching with SIFT Descriptors) got similar results, but FLANN based Matcher was slightly Faster (as its small amount of data),using ration test helped to get better result in "Brute-Force Matching with SIFT Descriptors" <br/>
+acorrding to my tries, ( Brute-Force Matching with ORB Descriptors ) gets lower number of matches even if i set the matches array to get high values, (FLANN based Matcher with SIFT Descriptors) and (Brute-Force Matching with SIFT Descriptors) got similar results, but FLANN based Matcher was slightly Faster (as its small amount of data),using ratio test helped to get better result in "Brute-Force Matching with SIFT Descriptors" <br/>
 <br/>
 
    <img src = "https://user-images.githubusercontent.com/66872519/190903375-ffad6486-864c-4ea1-885e-57fa8f1b2a1b.png" />
