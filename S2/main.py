@@ -46,12 +46,12 @@ def h_v(x) :
 # trackbars window
 cv.namedWindow('TrackBars')
 cv.resizeWindow("TrackBars", 400, 330)
-cv.createTrackbar('Low_H', 'TrackBars' , low_H , max_value_H   , l_h)
-cv.createTrackbar('Low_S', 'TrackBars' , low_S, max_value_V_S  , l_s)
-cv.createTrackbar('Low_V', 'TrackBars' , low_V, max_value_V_S  , l_v)
-cv.createTrackbar('High_H', 'TrackBars' , 180, max_value_H  , h_h)
-cv.createTrackbar('High_S', 'TrackBars' , 255, max_value_V_S, h_s)
-cv.createTrackbar('High_V', 'TrackBars' , 255, max_value_V_S, h_v)
+cv.createTrackbar('Low_H' ,'TrackBars', low_H , max_value_H   , l_h)
+cv.createTrackbar('Low_S' ,'TrackBars', low_S , max_value_V_S , l_s)
+cv.createTrackbar('Low_V' ,'TrackBars', low_V , max_value_V_S , l_v)
+cv.createTrackbar('High_H','TrackBars', 180   , max_value_H   , h_h)
+cv.createTrackbar('High_S','TrackBars', 255   , max_value_V_S , h_s)
+cv.createTrackbar('High_V','TrackBars', 255   , max_value_V_S , h_v)
 
 
 while True:
