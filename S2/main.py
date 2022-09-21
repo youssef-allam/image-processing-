@@ -16,10 +16,10 @@ cap= cv.VideoCapture(0) #get video for the camera
 
 
 #Extraction of Colors
-def extract_color(img, min_value:np.ndarray, max_value:np.ndarray):
+def extract_color(img, min_bound, max_bound):
     hsv_img= cv.cvtColor(img, cv.COLOR_BGR2HSV) # convert to HSV 
-    mask= cv.inRange(hsv_img,min_value,max_value) # threshold to make wanted color white
-    extracted_img = cv.bitwise_and(img,img,mask=mask)# extract wanted color
+    mask= cv.inRange(hsv_img,min_bound,max_bound) # threshold to make wanted color white
+    extracted_img = cv.bitwise_and(img,img,mask=mask)# extract wanted color 
     return extracted_img
 
 #seting values 
@@ -58,7 +58,6 @@ cv.createTrackbar('High_V', 'TrackBars' , 255, max_value_V_S, h_v)
 while True:
     ret,frame= cap.read() #reading frames
     cv.imshow('Color-Extracted',extract_color(frame, (low_H,low_S,low_V),(high_H,high_S,high_V)))
-
     if cv.waitKey(1) == 27:
         break
 
