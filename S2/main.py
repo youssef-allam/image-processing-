@@ -11,7 +11,7 @@ high_V = 100
 max_value_V_S = 255
 max_value_H = 180
 
-cap= cv.VideoCapture(0) #get video for the camera
+cap= cv.VideoCapture(0) #get video form the camera
 
 
 #Extraction of Colors
